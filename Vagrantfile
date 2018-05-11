@@ -14,19 +14,21 @@ Vagrant.configure("2") do |config|
 
 	config.vm.define "puppetmaster" do |pm|
 		pm.vm.box = "centos/7"
-		pm.vm.network "public_network", ip: "192.168.101.200"
+		pm.vm.network "public_network", ip: "192.168.101.210"
 		pm.vm.hostname = "puppetmaster"
 	end
 
 	config.vm.define "puppet-agent-centos" do |pac|
 		pac.vm.box = "centos/7"
-		pac.vm.network "public_network", ip: "192.168.101.201"
+		pac.vm.network "public_network", ip: "192.168.101.211"
 		pac.vm.hostname = "cengos-agent"
 	end
 
 	config.vm.define "puppet-agent-ubuntu" do |pau|
 		pau.vm.box = "ubuntu/xenial64"
-		pau.vm.network "public_network", ip: "192.168.101.202"
+		pau.vm.network "public_network", ip: "192.168.101.212"
 		pau.vm.hostname = "ubuntu-agent"
 	end
+
+	config.vm.provision "shell", path: "provisioning.sh"
 end
